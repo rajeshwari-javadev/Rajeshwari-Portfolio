@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Java and Spring Backend Developer Portfolio">
+  <title>Java | Spring Backend Developer Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --surface: #111827;
+      --surface-2: #172033;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #60a5fa;
+      --accent-2: #38bdf8;
+      --border: #263247;
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(11, 17, 32, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: white;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover { color: white; }
+
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 0;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(56, 189, 248, .13), transparent 30%),
+        radial-gradient(circle at 20% 80%, rgba(96, 165, 250, .10), transparent 30%);
+    }
+
+    .hero-content { max-width: 820px; }
+
+    .eyebrow {
+      color: var(--accent-2);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.05;
+      margin-bottom: 22px;
+    }
+
+    h1 span { color: var(--accent); }
+
+    .hero p {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.15rem;
+      margin-bottom: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #08111f;
+      border-color: var(--accent);
+    }
+
+    .btn-secondary {
+      color: white;
+      background: var(--surface);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    section { padding: 90px 0; }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 38px;
+    }
+
+    .about-grid,
+    .project-grid,
+    .skills-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .about-grid { grid-template-columns: 1.5fr 1fr; }
+    .project-grid { grid-template-columns: repeat(2, 1fr); }
+    .skills-grid { grid-template-columns: repeat(3, 1fr); }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+    }
+
+    .card p { color: var(--muted); }
+
+    .highlight-list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+    }
+
+    .highlight-list li {
+      padding-left: 22px;
+      position: relative;
+      color: var(--muted);
+    }
+
+    .highlight-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 300px;
+    }
+
+    .project-card h3 {
+      margin-bottom: 12px;
+      font-size: 1.35rem;
+    }
+
+    .project-card p {
+      flex: 1;
+      margin-bottom: 20px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 5px 11px;
+      color: #cbd5e1;
+      font-size: 0.82rem;
+    }
+
+    .skill-card h3 { margin-bottom: 12px; }
+
+    .skill-card ul {
+      list-style: none;
+      color: var(--muted);
+    }
+
+    .skill-card li { margin: 6px 0; }
+
+    .timeline {
+      border-left: 2px solid var(--border);
+      margin-left: 8px;
+      padding-left: 28px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 34px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--accent);
+      left: -35px;
+      top: 8px;
+    }
+
+    .timeline-item h3 { margin-bottom: 4px; }
+    .timeline-item .date { color: var(--accent-2); font-size: .9rem; }
+    .timeline-item p { color: var(--muted); margin-top: 8px; }
+
+    .contact {
+      text-align: center;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact p {
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 25px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    @media (max-width: 800px) {
+      .nav-links { display: none; }
+      .about-grid,
+      .project-grid,
+      .skills-grid { grid-template-columns: 1fr; }
+      section { padding: 65px 0; }
+      .hero { min-height: 80vh; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="logo">Java<span>.</span>Developer</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">Java • Spring • Backend Development</div>
+        <h1>Hi, I'm <span>Your Name</span>.</h1>
+        <p>
+          Java/Spring Backend Developer with 5–8 years of experience building,
+          maintaining and improving reliable enterprise applications and REST APIs.
+          I focus on clean backend design, practical problem solving and production-ready solutions.
+        </p>
+
+        <div class="buttons">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-secondary" href="#contact">Contact Me</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">Backend-focused Java developer with real-world application experience.</p>
+
+        <div class="about-grid">
+          <div class="card">
+            <p>
+              I am a Java backend developer specializing in Spring-based applications,
+              RESTful APIs and database-driven enterprise systems. My experience includes
+              working with existing production systems, understanding business requirements,
+              fixing defects, implementing enhancements and improving application reliability.
+            </p>
+            <br>
+            <p>
+              I enjoy understanding how different components work together and designing
+              maintainable backend solutions that are practical for real production environments.
+            </p>
+          </div>
+
+          <div class="card">
+            <ul class="highlight-list">
+              <li>5–8 years of Java development experience</li>
+              <li>Strong Spring Boot experience</li>
+              <li>REST API development</li>
+              <li>JPA / Hibernate</li>
+              <li>Microservices fundamentals</li>
+              <li>Production maintenance & troubleshooting</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Technical Skills</h2>
+        <p class="section-subtitle">Technologies and concepts I work with.</p>
+
+        <div class="skills-grid">
+          <div class="card skill-card">
+            <h3>Backend</h3>
+            <ul>
+              <li>Java</li>
+              <li>Spring Boot</li>
+              <li>Spring MVC</li>
+              <li>Spring Data JPA</li>
+              <li>REST APIs</li>
+            </ul>
+          </div>
+
+          <div class="card skill-card">
+            <h3>Database</h3>
+            <ul>
+              <li>JPA / Hibernate</li>
+              <li>SQL</li>
+              <li>Relational Databases</li>
+              <li>Entity Relationships</li>
+              <li>Query Optimization</li>
+            </ul>
+          </div>
+
+          <div class="card skill-card">
+            <h3>Architecture</h3>
+            <ul>
+              <li>Microservices</li>
+              <li>Spring Cloud</li>
+              <li>Service Discovery</li>
+              <li>API Gateway</li>
+              <li>Distributed Systems</li>
+            </ul>
+          </div>
+
+          <div class="card skill-card">
+            <h3>Tools</h3>
+            <ul>
+              <li>Eclipse / IntelliJ IDEA</li>
+              <li>Maven</li>
+              <li>Git</li>
+              <li>Postman</li>
+              <li>Spring Boot Actuator</li>
+            </ul>
+          </div>
+
+          <div class="card skill-card">
+            <h3>Development</h3>
+            <ul>
+              <li>Exception Handling</li>
+              <li>Logging</li>
+              <li>Validation</li>
+              <li>Unit Testing</li>
+              <li>Debugging</li>
+            </ul>
+          </div>
+
+          <div class="card skill-card">
+            <h3>Engineering</h3>
+            <ul>
+              <li>Clean Code</li>
+              <li>Design Principles</li>
+              <li>Code Reviews</li>
+              <li>Production Support</li>
+              <li>Performance Awareness</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">Selected backend projects demonstrating practical Java/Spring development.</p>
+
+        <div class="project-grid">
+
+          <!-- Project 1 -->
+          <article class="card project-card">
+            <h3>Course Management System</h3>
+            <p>
+              A Spring Boot based application for managing courses and course-related
+              information. The application exposes REST endpoints and uses a persistence
+              layer to store and retrieve application data.
+            </p>
+            <div class="tags">
+              <span class="tag">Java</span>
+              <span class="tag">Spring Boot</span>
+              <span class="tag">Spring MVC</span>
+              <span class="tag">JPA</span>
+              <span class="tag">Hibernate</span>
+              <span class="tag">REST API</span>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="card project-card">
+            <h3>Microservices Application</h3>
+            <p>
+              A distributed Spring Boot application demonstrating service-to-service
+              communication, service discovery and centralized routing. The architecture
+              uses Spring Cloud components to make independently deployable services work together.
+            </p>
+            <div class="tags">
+              <span class="tag">Java</span>
+              <span class="tag">Spring Boot</span>
+              <span class="tag">Microservices</span>
+              <span class="tag">Eureka</span>
+              <span class="tag">API Gateway</span>
+              <span class="tag">Spring Cloud</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <p class="section-subtitle">A practical, production-focused development profile.</p>
+
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <span class="date">5–8 Years Experience</span>
+            <h3>Java / Spring Backend Developer</h3>
+            <p>
+              Developed and maintained Java applications, implemented backend enhancements,
+              fixed production issues and worked with Spring-based technologies.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="date">Production Support</span>
+            <h3>Application Maintenance & Troubleshooting</h3>
+            <p>
+              Investigated application issues, analyzed logs and exceptions, identified
+              root causes and implemented reliable fixes while considering existing system behavior.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="date">Backend Engineering</span>
+            <h3>API & Database Development</h3>
+            <p>
+              Built REST APIs, worked with JPA/Hibernate and relational databases,
+              and designed backend components with maintainability and performance in mind.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title">Let's Connect</h2>
+        <p>
+          I'm interested in Java backend development, Spring Boot projects and
+          opportunities where I can contribute to building reliable enterprise applications.
+        </p>
+
+        <div class="buttons" style="justify-content:center;">
+          <a class="btn btn-primary" href="mailto:your.email@example.com">Email Me</a>
+          <a class="btn btn-secondary" href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+          <a class="btn btn-secondary" href="https://github.com/" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Your Name • Java / Spring Backend Developer
+  </footer>
+
+</body>
+</html>
